@@ -5,6 +5,7 @@
 
 #include <string>
 
+// Object with block information
 struct Block
 {
   uint64_t blockSize;
