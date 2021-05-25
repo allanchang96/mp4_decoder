@@ -10,6 +10,8 @@ namespace BlockDecode
   enum BlockType
   {
     type_ftyp = 1,
+    type_moov,
+    type_mvhd,
   };
 
   // Returns the enum mapping of the given string
@@ -19,6 +21,18 @@ namespace BlockDecode
   namespace ftyp
   {
     void decode(uint64_t blockSize);
+  }
+
+  // Functions for moov block
+  namespace moov
+  {
+    void decode(uint64_t blockBase, uint64_t blockSize);
+  }
+
+  // Functions for mvhd block
+  namespace mvhd
+  {
+    void decode(uint64_t blockBase, uint64_t blockSize);
   }
 
 }

@@ -51,6 +51,18 @@ uint64_t VideoFile::read64(uint64_t &pos)
   return Convert::convert64(arr);
 }
 
+// Generic function to read numOfBytes
+std::vector<char> VideoFile::readBytes(uint32_t numOfBytes, uint64_t &pos)
+{
+  // Dynamically allocate array size
+  char *arr = new char(numOfBytes);
+  file.read(arr, numOfBytes);
+  pos += numOfBytes;
+  std::vector<char> res(arr, arr + numOfBytes * sizeof(char));
+  delete arr;
+  return res;
+}
+
 // Read 8 bytes and returns information of the block
 Block VideoFile::getBlock(void)
 {
@@ -72,9 +84,8 @@ Block VideoFile::getBlock(void)
   return blockInfo;
 }
 
-// Constructor
-
-VideoFile::VideoFile(std::string fileName)
+// Opening file
+void VideoFile::file_open(std::string fileName)
 {
   file.open(fileName, std::ios::in | std::ios::binary);
   // Set fileSize
@@ -83,8 +94,8 @@ VideoFile::VideoFile(std::string fileName)
   file.seekg(0, std::ios::beg);
 }
 
-// Destructor
-VideoFile::~VideoFile(void)
+// Closing file
+void VideoFile::file_close(void)
 {
   file.close();
 }
