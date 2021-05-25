@@ -100,14 +100,16 @@ void BlockDecode::mvhd::decode(uint64_t blockBase, uint64_t blockSize)
   if(version == 0){
     createdTime = VideoFile::read32(blockPos);
     modifiedTime = VideoFile::read32(blockPos);
-    std::cout << createdTime << std::endl;
-    std::cout << modifiedTime << std::endl;
   }
   else{
     createdTime = VideoFile::read64(blockPos);
     modifiedTime = VideoFile::read64(blockPos);
   }
+  std::cout << "Created: ";
   Convert::convertDate(createdTime);
+  std::cout << std::endl;
+  std::cout << "Modified: ";
   Convert::convertDate(modifiedTime);
+  std::cout << std::endl;
   
 }

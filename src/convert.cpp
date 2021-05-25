@@ -86,5 +86,5 @@ void Convert::convertDate(uint64_t seconds)
     std::cout << "0";
   }
   std::cout << displaySeconds << " ";
-  std::cout << startYear + years << std::endl;
+  std::cout << startYear + years;
 }
