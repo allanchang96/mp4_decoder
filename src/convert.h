@@ -16,6 +16,9 @@ namespace Convert
 
   // Convert time in number of total units, to HH:MM:SS
   void convertDuration(uint64_t unitCount, uint64_t timeUnit);
+
+  // Convert from fixed point to float
+  float convertFixedPoint(uint64_t val, uint32_t offset);
 };
 
 #endif

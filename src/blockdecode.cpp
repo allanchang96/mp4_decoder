@@ -128,11 +128,11 @@ void BlockDecode::mvhd::decode(uint64_t blockSize)
   // DURATION
 
   // USER PLAYBACK SPEED
-  std::cout << "--Preferred Rate: " << VideoFile::read32(blockPos) << std::endl;
+  std::cout << "--Preferred Rate: " << Convert::convertFixedPoint(VideoFile::read32(blockPos), 16) << std::endl;
   // USER PLAYBACK SPEED
 
   // USER VOLUME
-  std::cout << "--Preferred Volume: " << VideoFile::read16(blockPos) << std::endl;
+  std::cout << "--Preferred Volume: " << Convert::convertFixedPoint(VideoFile::read16(blockPos), 8) << std::endl;
   // USER VOLUME
 
   // RESERVED 10 BYTES
@@ -145,9 +145,9 @@ void BlockDecode::mvhd::decode(uint64_t blockSize)
 
   // TRANSFORMATION MATRIX
   std::cout << "--Matrix Structure:" << std::endl;
-  std::cout << VideoFile::read32(blockPos) << " " << VideoFile::read32(blockPos) << " " << VideoFile::read32(blockPos) << std::endl;
-  std::cout << VideoFile::read32(blockPos) << " " << VideoFile::read32(blockPos) << " " << VideoFile::read32(blockPos) << std::endl;
-  std::cout << VideoFile::read32(blockPos) << " " << VideoFile::read32(blockPos) << " " << VideoFile::read32(blockPos) << std::endl;
+  std::cout << Convert::convertFixedPoint(VideoFile::read32(blockPos), 16) << " " << Convert::convertFixedPoint(VideoFile::read32(blockPos), 16) << " " << Convert::convertFixedPoint(VideoFile::read32(blockPos), 16) << std::endl;
+  std::cout << Convert::convertFixedPoint(VideoFile::read32(blockPos), 16) << " " << Convert::convertFixedPoint(VideoFile::read32(blockPos), 16) << " " << Convert::convertFixedPoint(VideoFile::read32(blockPos), 16) << std::endl;
+  std::cout << Convert::convertFixedPoint(VideoFile::read32(blockPos), 16) << " " << Convert::convertFixedPoint(VideoFile::read32(blockPos), 16) << " " << Convert::convertFixedPoint(VideoFile::read32(blockPos), 16) << std::endl;
   // TRANSFORMATION MATRIX
 
   // QUICKTIME PREVIEW
@@ -280,7 +280,7 @@ void BlockDecode::tkhd::decode(uint64_t blockSize)
   // RESERVED 8 BYTES
 
   // VIDEO LAYER
-  std::cout << "---Layer: " << VideoFile::read16(blockPos) << std::endl;
+  std::cout << "---Layer: " << Convert::convertFixedPoint(VideoFile::read16(blockPos), 8) << std::endl;
   // VIDEO LAYER
 
   // ALTERNATE TRACK ID
@@ -288,26 +288,23 @@ void BlockDecode::tkhd::decode(uint64_t blockSize)
   // ALTERNATE TRACK ID
 
   // TRACK VOLUME
-  std::cout << "---Volume: " << VideoFile::read16(blockPos) << std::endl;
+  std::cout << "---Volume: " << Convert::convertFixedPoint(VideoFile::read16(blockPos), 8) << std::endl;
   // TRACK VOLUME
 
   // RESERVED 2 BYTES
   std::cout << "---Reserved: " << VideoFile::read16(blockPos) << std::endl;
   // RESERVED 2 BYTES
 
-  // TODO: According to Apple QUICKTIME documents, this is the correct format, but it seems like
-  // the offset is incorrect.
-
   // TRANSFORMATION MATRIX
   std::cout << "---Matrix Structure:" << std::endl;
-  std::cout << VideoFile::read32(blockPos) << " " << VideoFile::read32(blockPos) << " " << VideoFile::read32(blockPos) << std::endl;
-  std::cout << VideoFile::read32(blockPos) << " " << VideoFile::read32(blockPos) << " " << VideoFile::read32(blockPos) << std::endl;
-  std::cout << VideoFile::read32(blockPos) << " " << VideoFile::read32(blockPos) << " " << VideoFile::read32(blockPos) << std::endl;
+  std::cout << Convert::convertFixedPoint(VideoFile::read32(blockPos), 16) << " " << Convert::convertFixedPoint(VideoFile::read32(blockPos), 16) << " " << Convert::convertFixedPoint(VideoFile::read32(blockPos), 16) << std::endl;
+  std::cout << Convert::convertFixedPoint(VideoFile::read32(blockPos), 16) << " " << Convert::convertFixedPoint(VideoFile::read32(blockPos), 16) << " " << Convert::convertFixedPoint(VideoFile::read32(blockPos), 16) << std::endl;
+  std::cout << Convert::convertFixedPoint(VideoFile::read32(blockPos), 16) << " " << Convert::convertFixedPoint(VideoFile::read32(blockPos), 16) << " " << Convert::convertFixedPoint(VideoFile::read32(blockPos), 16) << std::endl;
   // TRANSFORMATION MATRIX
 
   // VIDEO FRAME SIZE
-  std::cout << "---Track Width: " << VideoFile::read32(blockPos) << std::endl;
-  std::cout << "---Track Height: " << VideoFile::read32(blockPos) << std::endl;
+  std::cout << "---Track Width: " << Convert::convertFixedPoint(VideoFile::read32(blockPos), 16) << std::endl;
+  std::cout << "---Track Height: " << Convert::convertFixedPoint(VideoFile::read32(blockPos), 16) << std::endl;
   // VIDEO FRAME SIZE
 
   assert(blockPos == blockSize);

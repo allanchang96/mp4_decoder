@@ -120,3 +120,9 @@ void Convert::convertDuration(uint64_t unitCount, uint64_t timeUnit)
   }
   std::cout << displaySeconds;
 }
+
+// Convert from fixed point to float
+float Convert::convertFixedPoint(uint64_t val, uint32_t offset)
+{
+  return val / (1 << offset);
+}
