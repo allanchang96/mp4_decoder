@@ -27,9 +27,12 @@ namespace VideoFile
   std::string readString(uint32_t numOfBytes, uint64_t &pos);
 
   // Read bytes as 32-bit unsigned int and update pos value
+  uint16_t read16(uint64_t &pos);
+
+  // Read bytes as 32-bit unsigned int and update pos value
   uint32_t read32(uint64_t &pos);
 
-  // Read bytes as 64-bit unsigned int
+  // Read bytes as 64-bit unsigned int and update pos value
   uint64_t read64(uint64_t &pos);
 
   // Generic function to read numOfBytes

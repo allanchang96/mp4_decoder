@@ -29,6 +29,18 @@ std::string VideoFile::readString(uint32_t numOfBytes, uint64_t &pos)
   return res;
 }
 
+// Read bytes as 16-bit unsigned int and update pos value
+uint16_t VideoFile::read16(uint64_t &pos)
+{
+  std::array<char, 2> arr;
+  file.read(arr.data(), arr.size());
+
+  pos += 2;
+
+  return Convert::convert16(arr);
+
+}
+
 // Read bytes as 32-bit unsigned int and update pos value
 uint32_t VideoFile::read32(uint64_t &pos)
 {

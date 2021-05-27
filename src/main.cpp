@@ -13,6 +13,10 @@ int main(void)
   const std::string fileName = "sample.mp4";
   VideoFile::file_open(fileName);
 
+  // Set the precision
+  std::cout.precision(1);
+  std::cout << std::fixed;
+
   std::cout << "Decoding \"" << fileName << "\"" << std::endl;
   
   uint64_t fileSize = VideoFile::getFileSize();

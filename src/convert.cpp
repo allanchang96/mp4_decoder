@@ -4,6 +4,17 @@
 #include <string>
 #include "convert.h"
 
+uint16_t Convert::convert16(std::array<char, 2> &arr)
+{
+  uint16_t val = 0;
+  for(uint16_t i = 0; i < 1; i++){
+    val |= reinterpret_cast<uint8_t&> (arr[i]);
+    val <<= 8;
+  }
+  val |= reinterpret_cast<uint8_t&> (arr[1]);
+  return val;
+}
+
 uint32_t Convert::convert32(std::array<char, 4> &arr)
 {
   uint32_t val = 0;
@@ -87,4 +98,25 @@ void Convert::convertDate(uint64_t seconds)
   }
   std::cout << displaySeconds << " ";
   std::cout << startYear + years;
+}
+
+// Convert time in number of total units, to HH:MM:SS
+void Convert::convertDuration(uint64_t unitCount, uint64_t timeUnit)
+{
+  uint64_t seconds = (unitCount + (timeUnit / 2)) / timeUnit;
+  uint64_t displayMinutes = seconds / 60;
+  uint64_t displayHours = displayMinutes / 60;
+  uint64_t displaySeconds = seconds % 60;
+  if(displayHours < 10){
+    std::cout << "0";
+  }
+  std::cout << displayHours << ":";
+  if(displayMinutes < 10){
+    std::cout << "0";
+  }
+  std::cout << displayMinutes << ":";
+  if(displaySeconds < 10){
+    std::cout << "0";
+  }
+  std::cout << displaySeconds;
 }

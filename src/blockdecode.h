@@ -12,6 +12,8 @@ namespace BlockDecode
     type_ftyp = 1,
     type_moov,
     type_mvhd,
+    type_trak,
+    type_tkhd,
   };
 
   // Returns the enum mapping of the given string
@@ -32,7 +34,19 @@ namespace BlockDecode
   // Functions for mvhd block
   namespace mvhd
   {
+    void decode(uint64_t blockSize);
+  }
+
+  // Functions for trak block
+  namespace trak
+  {
     void decode(uint64_t blockBase, uint64_t blockSize);
+  }
+
+  // Functions for tkhd block
+  namespace tkhd
+  {
+    void decode(uint64_t blockSize);
   }
 
 }
